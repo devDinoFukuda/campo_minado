@@ -22,7 +22,25 @@ public class Campo {
 
 
 
-  Boolean adicionarVizinho(Campo vizinho) {}
+  Boolean adicionarVizinho(Campo vizinho) {
+    Boolean linhaDiferente = linha != vizinho.linha;
+    Boolean colunaDiferente = coluna != vizinho.coluna;
+    Boolean diagonal = linhaDiferente && colunaDiferente;
+
+    Integer deltaLinha = Math.abs(linha - vizinho.linha);
+    Integer deltaColuna = Math.abs(coluna - vizinho.coluna);
+    Integer deltaGeral = deltaColuna + deltaLinha;
+
+    if(deltaGeral == 1 && !diagonal) {
+      vizinhos.add(vizinho);
+      return true;
+    } else if(deltaGeral == 2 && diagonal) {
+      vizinhos.add(vizinho);
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
   
